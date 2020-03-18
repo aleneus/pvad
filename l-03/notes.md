@@ -5,6 +5,11 @@
 Название. Прикладные вопросы. Задачи ЭС. Двоякое понимание анализа
 данных.
 
+Задание. Сгенерировать массив случайных чисел, распределенных
+произовольно заданным образом.
+
+![Задание](pic/task.png "Набросок")
+
 ## Основная часть
 
 Разбор задачи с распределением. Описание листингов.
@@ -17,3 +22,4 @@
 ## Ссылки
 
 1. [Quantile function](https://en.wikipedia.org/wiki/Quantile_function)
+2. [random — Generate pseudo-random numbers](https://docs.python.org/3/library/random.html)
