@@ -11,6 +11,13 @@ yis = f(xis)
 
 yis = yis / (sum(yis) * 10/1000)
 
-plt.plot(xis, yis, "b")
+F = []
+prev = 0
+for y in yis:
+    s = y * 0.01
+    F.append(prev + s)
+    prev += s
+
+plt.plot(xis, F, "b")
 plt.grid(True)
-plt.savefig("e2.png")
+plt.savefig("e3.png")

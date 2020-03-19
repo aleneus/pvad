@@ -102,17 +102,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import interp1d
 
-xs = [0, 0.5, 1, 2, 3, 3.5, 4,   5, 6,   6.5, 7, 8, 9, 9.5, 10]
-ys = [0, 0.3, 1, 3, 1, 0.3, 0.1, 1, 0.1, 0.3, 1, 3, 1, 0.3, 0]
+xs = np.array([0, 0.5, 1, 2, 3, 3.5, 4,   5, 6,   6.5, 7, 8, 9, 9.5, 10])
+ys = np.array([0, 0.3, 1, 3, 1, 0.3, 0.1, 1, 0.1, 0.3, 1, 3, 1, 0.3, 0])
 
 f = interp1d(xs, ys, kind="cubic")
 xis = np.linspace(0, xs[-1], 1000)
 yis = f(xis)
 
-plt.plot(xs, ys, "ro")
+yis = yis / (sum(yis) * 10/1000)
+
 plt.plot(xis, yis, "b")
 plt.grid(True)
-plt.savefig("e1.png")
+plt.savefig("e2.png")
 ```
 
 Я добавил точек и немного изменил некоторые значения для того, чтобы
@@ -121,7 +122,7 @@ plt.savefig("e1.png")
 
 ![Плавно](./code/e2.png)
 
-Небольшие пояснения. В этом кусочке кода:
+Небольшие пояснения. В этом фрагемнте кода
 
 ```
 f = interp1d(xs, ys, kind="cubic")
@@ -141,11 +142,67 @@ yis = f(xis)
 от 0 до 10 и к ним применяется функция f. Так у нас получается больше
 точек.
 
+Здесь
+
+```
+yis = yis / (sum(yis) * 10/1000)
+```
+
+я делаю так, чтобы интеграл плотности вероятности был равен
+единице. Почти.
+
 Пока мы просто "оцифровали" набросок.
 
+А надо сгенерировать числа. Вы помните, что плотность распределения
+вероятности - это производная функции распределения? Для нашей
+плотности веротяности функция распределения будет выглядеть примерно
+так:
 
-<!-- Кстати, вы помните, что плотность распределения вероятности - это -->
-<!-- производная функции распределения? -->
+![Схема](./pic/prob.png)
+
+Дополним наш код:
+
+```
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import interp1d
+
+xs = np.array([0, 0.5, 1, 2, 3, 3.5, 4,   5, 6,   6.5, 7, 8, 9, 9.5, 10])
+ys = np.array([0, 0.3, 1, 3, 1, 0.3, 0.1, 1, 0.1, 0.3, 1, 3, 1, 0.3, 0])
+
+f = interp1d(xs, ys, kind="cubic")
+xis = np.linspace(0, xs[-1], 1000)
+yis = f(xis)
+
+yis = yis / (sum(yis) * 10/1000)
+
+F = []
+prev = 0
+for y in yis:
+	s = y * 0.01
+	F.append(prev + s)
+	prev += s
+
+plt.plot(xis, F, "b")
+plt.grid(True)
+plt.savefig("e3.png")
+```
+
+Здесь
+
+```
+F = []
+prev = 0
+for y in yis:
+	s = y * 0.01
+	F.append(prev + s)
+	prev += s
+```
+
+мы получаем функцию распределения. Каждое ее новое значение мы
+получаем как сумму предыдущего значения и очередного значения
+плотности вероятности, умноженного на шаг интерполирования. Т.е. мы
+численно интегрируем плотность вероятности.
 
 ## Домашнее задание
 
@@ -170,6 +227,8 @@ yis = f(xis)
    Automation (RPA), Moscow, Russia, 2019.
 1. [Probability density
    function](https://en.wikipedia.org/wiki/Probability_density_function)
+1. [Interpolation
+   (scipy.interpolate)](https://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html)
 1. [Quantile
    function](https://en.wikipedia.org/wiki/Quantile_function)
 1. [random — Generate pseudo-random
