@@ -5,4 +5,4 @@ ys = [0, 1, 3, 1, 0, 1, 0, 1, 3, 1, 0]
 
 plt.plot(xs, ys, "ro")
 plt.grid(True)
-plt.show()
+plt.savefig("e1.png")
