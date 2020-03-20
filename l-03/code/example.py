@@ -3,69 +3,57 @@ import numpy as np
 from scipy.interpolate import interp1d
 import random
 
-xs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ys = [0, 1, 3, 1, 0, 1, 0, 1, 3, 1, 0]
+xs = [0,   1, 2, 3, 4,   5, 6,   7, 8, 9, 10]
+ys = [0.1, 1, 3, 1, 0.1, 1, 0.1, 1, 3, 1, 0.1]
 
 fig = plt.figure()
 plt.plot(xs, ys, "ro")
 plt.grid(True)
-plt.savefig("e1.png")
+plt.savefig("source.png")
 plt.close(fig)
 
-
-xs = np.array([0, 0.5, 1, 2, 3, 3.5, 4,   5, 6,   6.5, 7, 8, 9, 9.5, 10])
-ys = np.array([0, 0.3, 1, 3, 1, 0.3, 0.1, 1, 0.1, 0.3, 1, 3, 1, 0.3, 0])
-
-f = interp1d(xs, ys, kind="cubic")
-xis = np.linspace(0, xs[-1], 100)
-yis = f(xis)
-
-yis = yis / (sum(yis) * 10/100)
+f = interp1d(xs, ys, kind="quadratic")
+xs = np.linspace(0, 10, 100)
+ys = f(xs)
 
 fig = plt.figure()
-plt.plot(xis, yis, "b")
+plt.plot(xs, ys, "g")
 plt.grid(True)
-plt.savefig("e2.png")
+plt.savefig("source-more.png")
 plt.close(fig)
 
+Ys = []
+Y = 0
+for y in np.array(ys) / sum(ys):
+    Ys.append(Y)
+    Y += y
 
-F = []
-xfs = []
-val = 0
-for x, y in zip(xis, yis):
-    s = y * 10/100
-    val = val + s
-    if val > 1:
-        break
-    F.append(val)
-    xfs.append(x)
+Ys.append(1)
+Xs = list(xs)
+Xs.append(xs[-1] + (xs[-1] - xs[-2]))
 
 fig = plt.figure()
-plt.plot(xfs, F, "b")
+plt.plot(Xs, Ys, "b")
 plt.grid(True)
-plt.savefig("e3.png")
+plt.savefig("prob.png")
 plt.close(fig)
-
 
 fig = plt.figure()
-plt.plot(F, xfs, "b")
+plt.plot(Ys, Xs, "b")
 plt.grid(True)
-plt.savefig("e4.png")
+plt.savefig("quantile.png")
 plt.close(fig)
 
-
-Q = interp1d(F, xfs, kind="cubic")
+Q = interp1d(Ys, Xs, kind="quadratic")
 
 vs = []
 for i in range(0, 10000):
     r = random.uniform(0, 1)
-    if r < 0 or r > max(F):
-        continue
     vs.append(Q(r))
 
 fig = plt.figure()
 plt.hist(vs, bins=50, density=True)
-plt.plot(xis, yis, "b")
+plt.plot(xs, ys / (sum(ys) * 10/100), "g")
 plt.grid(True)
-plt.savefig("e5.png")
+plt.savefig("hist.png")
 plt.close(fig)
