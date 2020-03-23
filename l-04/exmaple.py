@@ -42,8 +42,8 @@ def ex_zero_anomaly():
     plt.grid(True)
 
 
-def ex_zeros_anomaly():
-    """Effect of zero for the filtration."""
+def ex_jumps_anomaly():
+    """Effect of number of jumps for the filtration."""
     T = 60
     f1 = 0.25
     a1 = 1
@@ -72,7 +72,7 @@ def ex_zeros_anomaly():
 
 
 def ex_long_zero_anomaly():
-    """Effect of zero for the filtration."""
+    """Effect of long zero for the filtration."""
     T = 60
     f1 = 0.25
     a1 = 1
@@ -99,20 +99,21 @@ def ex_long_zero_anomaly():
     plt.grid(True)
 
 
-def ex_range():
-    """Variation range"""
-    xs = [1, 2, 3]
-    p = max(xs) - min(xs)
-    print(p)
+def ex_skip():
+    """Skip one value."""
+    ts = np.arange(0, 60, DT)
+    xs = np.cos(2*np.pi*3*ts)
 
+    xs[len(xs)//2] = None
 
-def run_text_example(func):
-    print("Ex: {}".format(func.__doc__))
-    func()
-    print()
+    h = sig.firwin(cutoff=[2, 4], pass_zero=False, fs=FS,
+                   numtaps=FILTER_LEN)
+    xf = sig.lfilter(h, [1], xs)
+    plt.plot(ts[FILTER_LEN:], xf[FILTER_LEN:])
 
 
 def run_vis_example(func, save=True):
+    """Runs example with single figure output."""
     if save:
         fig = plt.figure()
         func()
@@ -125,7 +126,14 @@ def run_vis_example(func, save=True):
     plt.show()
 
 
-# run_text_example(ex_range)
+def run_text_example(func):
+    """Runs example with text output."""
+    print("Ex: {}".format(func.__doc__))
+    func()
+    print()
+
+
 # run_vis_example(ex_zero_anomaly, save=False)
-# run_vis_example(ex_zeros_anomaly, save=False)
-run_vis_example(ex_long_zero_anomaly, save=False)
+# run_vis_example(ex_jumps_anomaly, save=False)
+# run_vis_example(ex_long_zero_anomaly, save=False)
+run_vis_example(ex_skip, save=False)
