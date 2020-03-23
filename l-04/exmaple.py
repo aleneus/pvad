@@ -1,33 +1,35 @@
+"""Examples of some problems in signals."""
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.signal as sig
 
 
-DT = 0.02
-FS = 50
-
+DT, FS = 0.02, 50
 FILTER_LEN = 301
 
 
-def ex_zero_anomaly():
+def synth():
+    """Return test signal."""
+    freqs = [0.25, 3]
+    amps = [1, 0.05]
+    ts = np.arange(0, 60, DT)
+    xs = amps[0] * np.cos(2*np.pi*freqs[0]*ts) + 50
+    xs += amps[1] * np.cos(2*np.pi*freqs[1]*ts) + 50
+    return xs, ts
+
+
+def filt(xs, fband, ntaps=301):
+    """Filters signal."""
+    h = sig.firwin(cutoff=fband, pass_zero=False, fs=FS, numtaps=ntaps)
+    return sig.lfilter(h, [1], xs)
+
+
+def ex_zero():
     """Effect of zero for the filtration."""
-    T = 60
-    f1 = 0.25
-    a1 = 1
-    f2 = 3
-    a2 = 0.05
-
-    ts = np.arange(0, T, DT)
-    h1 = a1 * np.cos(2*np.pi*f1*ts) + 50
-    h2 = a2 * np.cos(2*np.pi*f2*ts) + 50
-    xs = h1 + h2
-
-    h = sig.firwin(cutoff=[2, 4], pass_zero=False,
-                   fs=FS, numtaps=FILTER_LEN)
-    xf = sig.lfilter(h, [1], xs)
-
-    xs[len(xs)//2] = 0
-    xfz = sig.lfilter(h, [1], xs)
+    xs, ts = synth()
+    xf = filt(xs, [2, 4], FILTER_LEN)
+    xs[len(xs) // 2] = 0
+    xfz = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(311)
     plt.plot(ts, xs)
@@ -42,25 +44,12 @@ def ex_zero_anomaly():
     plt.grid(True)
 
 
-def ex_jumps_anomaly():
+def ex_jumps():
     """Effect of number of jumps for the filtration."""
-    T = 60
-    f1 = 0.25
-    a1 = 1
-    f2 = 3
-    a2 = 0.05
-
-    ts = np.arange(0, T, DT)
-    h1 = a1 * np.cos(2*np.pi*f1*ts) + 50
-    h2 = a2 * np.cos(2*np.pi*f2*ts) + 50
-    xs = h1 + h2
-
+    xs, ts = synth()
     for i in range(5):
         xs[len(xs)//2 + i*50] = 0
-
-    h = sig.firwin(cutoff=[2, 4], pass_zero=False,
-                   fs=FS, numtaps=FILTER_LEN)
-    xf = sig.lfilter(h, [1], xs)
+    xf = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(211)
     plt.plot(ts, xs)
@@ -71,24 +60,11 @@ def ex_jumps_anomaly():
     plt.grid(True)
 
 
-def ex_long_zero_anomaly():
+def ex_long_zero():
     """Effect of long zero for the filtration."""
-    T = 60
-    f1 = 0.25
-    a1 = 1
-    f2 = 3
-    a2 = 0.05
-
-    ts = np.arange(0, T, DT)
-    h1 = a1 * np.cos(2*np.pi*f1*ts) + 50
-    h2 = a2 * np.cos(2*np.pi*f2*ts) + 50
-    xs = h1 + h2
-
+    xs, ts = synth()
     xs[len(xs)//2-300:len(xs)//2] = 0
-
-    h = sig.firwin(cutoff=[2, 4], pass_zero=False,
-                   fs=FS, numtaps=FILTER_LEN)
-    xf = sig.lfilter(h, [1], xs)
+    xf = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(211)
     plt.plot(ts, xs)
@@ -101,39 +77,57 @@ def ex_long_zero_anomaly():
 
 def ex_skip():
     """Skip one value."""
-    ts = np.arange(0, 60, DT)
-    xs = np.cos(2*np.pi*3*ts)
-
+    xs, ts = synth()
     xs[len(xs)//2] = None
+    xf = filt(xs, [2, 4], FILTER_LEN)
 
-    h = sig.firwin(cutoff=[2, 4], pass_zero=False, fs=FS,
-                   numtaps=FILTER_LEN)
-    xf = sig.lfilter(h, [1], xs)
     plt.plot(ts[FILTER_LEN:], xf[FILTER_LEN:])
 
 
-def run_vis_example(func, save=True):
+def ex_strange_dynamics():
+    """Adequate range, deviating but strange dynamics."""
+    bs = [5, 15, 35, -20, -10, 18, 28, 7, 7, 13, -25]
+    ts = np.arange(0, 60, 1)
+    xs = []
+    for i in range(len(ts)):
+        xs.append(bs[i % len(bs)])
+
+    plt.plot(ts, xs)
+    plt.xlabel("Time [min]")
+    plt.ylabel("Temperature")
+    plt.grid(True)
+
+
+def ex_differ():
+    """Data about same process are very differ."""
+    ts = np.arange(0, 60, 0.02)
+    xs1 = np.cos(2*np.pi*1*ts)
+    xs2 = np.cos(2*np.pi*1*ts + 0.1)
+    bs = np.arange(-0.3, 0.3, 0.01)
+    for i in range(len(xs2)):
+        xs2[i] = xs2[i] + bs[i % len(bs)]
+
+    plt.subplot(211)
+    plt.plot(ts, xs1)
+    plt.grid(True)
+
+    plt.subplot(212)
+    plt.plot(ts, xs2)
+    plt.grid(True)
+
+
+def run(func):
     """Runs example with single figure output."""
-    if save:
-        fig = plt.figure()
-        func()
-        plt.tight_layout()
-        plt.savefig("{}.png".format(func.__name__))
-        plt.close(fig)
-        return
-
+    fig = plt.figure()
     func()
-    plt.show()
+    plt.tight_layout()
+    plt.savefig("{}.png".format(func.__name__))
+    plt.close(fig)
 
 
-def run_text_example(func):
-    """Runs example with text output."""
-    print("Ex: {}".format(func.__doc__))
-    func()
-    print()
-
-
-# run_vis_example(ex_zero_anomaly, save=False)
-# run_vis_example(ex_jumps_anomaly, save=False)
-# run_vis_example(ex_long_zero_anomaly, save=False)
-run_vis_example(ex_skip, save=False)
+run(ex_zero)
+run(ex_jumps)
+run(ex_long_zero)
+run(ex_skip)
+run(ex_strange_dynamics)
+run(ex_differ)
