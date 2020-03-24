@@ -32,7 +32,7 @@ def ex_zero():
     xfz = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(311)
-    plt.plot(ts, xs)
+    plt.plot(ts[FILTER_LEN:], xs[FILTER_LEN:])
     plt.grid(True)
 
     plt.subplot(312)
@@ -52,7 +52,7 @@ def ex_jumps():
     xf = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(211)
-    plt.plot(ts, xs)
+    plt.plot(ts[FILTER_LEN:], xs[FILTER_LEN:])
     plt.grid(True)
 
     plt.subplot(212)
@@ -67,7 +67,7 @@ def ex_long_zero():
     xf = filt(xs, [2, 4], FILTER_LEN)
 
     plt.subplot(211)
-    plt.plot(ts, xs)
+    plt.plot(ts[FILTER_LEN:], xs[FILTER_LEN:])
     plt.grid(True)
 
     plt.subplot(212)
@@ -78,10 +78,18 @@ def ex_long_zero():
 def ex_skip():
     """Skip one value."""
     xs, ts = synth()
-    xs[len(xs)//2] = None
+    n = len(xs)//2
+    xs[n] = None
     xf = filt(xs, [2, 4], FILTER_LEN)
 
+    plt.subplot(211)
+    plt.plot(ts[FILTER_LEN:], xs[FILTER_LEN:])
+    plt.plot([ts[n-1]], [xs[n-1]], 'rx')
+    plt.grid(True)
+
+    plt.subplot(212)
     plt.plot(ts[FILTER_LEN:], xf[FILTER_LEN:])
+    plt.grid(True)
 
 
 def ex_strange_dynamics():
