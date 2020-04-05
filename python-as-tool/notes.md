@@ -2,89 +2,103 @@
 
 ## Введение
 
+Здравствуйте!
+
+* Необходимость рассказать о каких-то инструментах. Скоро практики.
+* Python - популярное решение. Но не единственное.
 * Очень много материалов, нет проблем
-* Не хочу писать больших предложений
 * Использование в исследованиях
-* Прототипирование, проблемы переписывания
+* Прототипирование, проблемы переписывания кода
+
+Пулл-реквест в эту лекцию приветствуется.
 
 ## Установка Python 3
 
-* Собственно установка
+### windows
 
-  Ubuntu
+![](./pic/python-site.png)
 
-  ```
-  $ sudo apt update
-  $ sudo apt install python3
-  ```
+Варианты загрузки:
 
-  Windows
+![](./pic/downloads.png)
 
-  ![](./pic/python-site.png)
+Вариант для установки:
 
-  Варианты загрузки:
+![](./pic/usual.png)
 
-  ![](./pic/downloads.png)
+Встраиваемый Python
 
-  Вариант для установки:
+![](./pic/embed.png)
 
-  ![](./pic/usual.png)
+Содержимое архива:
 
-  Встраиваемый Python
+![](./pic/archive.png)
 
-  ![](./pic/embed.png)
+Допустим, вы распаковали архив в папку `D:lec\`.
 
-  Содержимое архива:
+Создайте там файл `hello.py` со следующим содержимым:
 
-  ![](./pic/archive.png)
+```
+print('Hello, world!')
+```
 
-  Допустим, вы распаковали архив в папку `D:lec\`.
+Чтобы запустить программу, выполните команду:
 
-  Создайте там файл `hello.py` со следующим содержимым:
+```
+python.exe hello.py
+```
 
-  ```
-  print('Hello, world!')
-  ```
+### Ubuntu
 
-  Чтобы запустить программу, выполните команду:
+```
+$ sudo apt update
+$ sudo apt install python3
+```
 
-  ```
-  python.exe hello.py
-  ```
-
-* Онлайн
-
-  Пример
+### Онлайн-сервисы
 
   ![](./pic/online.png)
 
 ## Установка пакетов
 
-* easy_install
-* pip3
+Удобно использовать pip. Принцип работы. PyPI. Ссылка.
 
-  ```
-  $ sudo pip3 install package_name
-  ```
+### windows
 
-  Разбор.
+Просто pip, без 3 на конце.
 
-  Обновление:
+```
+> pip install package_name
+```
 
-  ```
-  $ sudo pip3 install -U package_name
-  ```
+`sudo` означает выполнение действия от имени суперпользователя.
 
-  Установка в папку пользователя
+Обновление уже установленного пакета:
 
-  ```
-  $ sudo pip3 install --user package_name
-  ```
+```
+> pip install -U package_name
+```
 
-  Особенности именования в Windows.
+Установка в папку пользователя
 
-* PyPI
-* виртуальное окружение, virtualenv
+```
+> pip install --user package_name
+```
+
+### Ubuntu
+
+Следует использовать команду `pip3`, если речь идет о Python 3 (скорее
+всего, это так).
+
+```
+$ sudo pip3 install package_name
+```
+
+Здесь `sudo` означает выполнение действия от имени суперпользователя.
+
+### Виртуальное окружение, virtualenv
+
+TODO
 
 ## Jupyter notebook
 
@@ -111,63 +125,71 @@
 
 ## Пакеты
 
-### Визуализация данных
+### Визуализация
 
-* matplotlib
+#### matplotlib
 
-  Установка:
+Ссылка. Основные возможности. Принцип работы. Выполнение действий от
+имени `pyplot`.
 
-  ```
-  $ pip3 install matplotlib
-  ```
+#### plotly
 
-  Примеры есть в лекции об аномалиях в данных.
+TODO
+
+Примеры есть в лекции об аномалиях в данных.
 
 ### Организация данных
 
-* numpy
-* pandas
-* выложить сюда примеры с delta-course
+#### numpy
+
+Массив. Низкоуровневая реализация.
+
+#### pandas
+
+Data Frame.
+
+выложить сюда примеры с delta-course
 
 ### Статистика
 
-* scipy.stats
+scipy.stats. TODO: текст
 
 ### Машинное обучение
 
-* sklearn
-* наборы данных, datasets
-* проблема качества данных
+sklearn.
 
-## Другие инструменты с API для Python
+наборы данных, datasets
 
-* описание подхода
-* наш опыт переписывания библиотеки
-* plotly
+## Другие инструменты, API для Python
 
-  пример
+Перенесение кода на низкий уровень, реализация на другом языке
+программирования. Python как клей. Ограничения подхода.
 
-* tensorflow
-* много еще чего, ссылка
+Наш опыт переписывания библиотеки обработки сигналов.
 
-## Домашнее задание
-
-* Установить, убедиться в работоспособности
-* Пулл-реквест в эту лекцию
+tensorflow
 
 ## Ссылки
 
 * [Python](https://www.python.org/)
 * [Online Python](https://repl.it/languages/python3)
-  * [Python. Урок 16. Установка пакетов в
+* [Python. Урок 16. Установка пакетов в
   Python](https://devpractice.ru/python-lesson-16-install-packages/)
 * [Виртуальная среда Python –
   Основы](https://python-scripts.com/virtualenv)
 * [Обработка данных](https://pythonworld.ru/obrabotka-dannyx)
 * [Анализ данных с использованием
   Python](https://habr.com/ru/post/353050/)
+* [Plotly Python Open Source Graphing
+  Library](https://plotly.com/python/)
+* [Statistical functions
+  (scipy.stats)](https://docs.scipy.org/doc/scipy/reference/stats.html)
+* [scikit-learn. Machine Learning in
+  Python](https://scikit-learn.org/stable/index.html)
 * [PyBrain работаем с нейронными сетями на
   Python](https://habr.com/ru/post/148407/)
+* [Основы анализа данных на python с использованием
+  pandas+sklearn](https://habr.com/ru/post/202090/)
 * [An end-to-end open source machine learning
   platform](https://www.tensorflow.org/)
 * [Введение в машинное обучение с

@@ -2,7 +2,9 @@
 ** DONE Отделить tensorflow, plotly и т.п. от python
 ** DONE Python 3 as a tool: plan
 ** DONE Python 3 as a tool: pics
-** TODO Python 3 as a tool: brush structure
+** DONE Python 3 as a tool: brush structure
+** TODO Python 3 as a tool: put here examples for delta course
+** TODO Python 3 as a tool: intro
 ** TODO Python 3 as a tool: draft
 ** TODO Python 3 as a tool: finish
 ** TODO Добавить материал о plotly
