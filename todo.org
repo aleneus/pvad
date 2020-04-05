@@ -3,11 +3,12 @@
 ** DONE Python 3 as a tool: plan
 ** DONE Python 3 as a tool: pics
 ** DONE Python 3 as a tool: brush structure
-** TODO Python 3 as a tool: put here examples for delta course
+** DONE Python 3 as a tool: put here examples for delta course
+** TODO Python 3 as a tool: write a couple of words about every package
 ** TODO Python 3 as a tool: intro
 ** TODO Python 3 as a tool: draft
 ** TODO Python 3 as a tool: finish
-** TODO Добавить материал о plotly
+** TODO Python 3 as a tool: tell about plotly
 * later
 ** TODO ! Контрольная работа
 ** TODO Подумать над структурой проекта
