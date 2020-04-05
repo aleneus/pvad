@@ -84,7 +84,7 @@ $ sudo apt install python3
 
 ### Онлайн-сервисы
 
-  ![](./pic/online.png)
+![](./pic/online.png)
 
 ## Установка пакетов
 
@@ -129,26 +129,24 @@ TODO
 
 ## Jupyter notebook
 
-* Установка
-* Запуск
-* Настройка
+<!-- TODO: Настройка -->
 
-  ```
-  $ cd jupyter
-  $ jupyter notebook
-  ```
+```
+$ cd jupyter
+$ jupyter notebook
+```
 
-  В браузере должна открыться вкладка:
+В браузере должна открыться вкладка:
 
-  ![](./pic/jupyter.png)
+![](./pic/jupyter.png)
 
-  Пример страницы:
+Пример страницы:
 
-  ![](./pic/jupyter-example.png)
+![](./pic/jupyter-example.png)
 
-* Совместная работа
+<!-- TODO: Настройка для совместной работы -->
 
-* Я его не люблю, но иногда использую
+Я его не люблю, но иногда использую
 
 ## Пакеты
 
