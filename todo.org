@@ -4,11 +4,14 @@
 ** DONE Python 3 as a tool: pics
 ** DONE Python 3 as a tool: brush structure
 ** DONE Python 3 as a tool: put here examples for delta course
+** DONE Python 3 as a tool: intro
 ** TODO Python 3 as a tool: write a couple of words about every package
-** TODO Python 3 as a tool: intro
 ** TODO Python 3 as a tool: draft
 ** TODO Python 3 as a tool: finish
 ** TODO Python 3 as a tool: tell about plotly
+* to 13.04.2020
+** TODO Контрольная работа
 * later
-** TODO ! Контрольная работа
 ** TODO Подумать над структурой проекта
+- [ ] один и тот же css в каждой папке
+- [ ] странное имя p-01
