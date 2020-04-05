@@ -1,7 +1,8 @@
-* 07.04.2020
+* to 07.04.2020
 ** DONE Отделить tensorflow, plotly и т.п. от python
 ** DONE Python 3 as a tool: plan
-** TODO Python 3 as a tool: pics
+** DONE Python 3 as a tool: pics
+** TODO Python 3 as a tool: brush structure
 ** TODO Python 3 as a tool: draft
 ** TODO Python 3 as a tool: finish
 ** TODO Добавить материал о plotly
