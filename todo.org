@@ -5,10 +5,11 @@
 ** DONE Python 3 as a tool: brush structure
 ** DONE Python 3 as a tool: put here examples for delta course
 ** DONE Python 3 as a tool: intro
-** TODO Python 3 as a tool: write a couple of words about every package
-** TODO Python 3 as a tool: draft
+** DONE Python 3 as a tool: tell about plotly
+** DONE Python 3 as a tool: couple of words about scipy.stats
+** TODO Python 3 as a tool: couple of words about scikit-learn
+** TODO Python 3 as a tool: couple of words about tensorflow
 ** TODO Python 3 as a tool: finish
-** TODO Python 3 as a tool: tell about plotly
 * to 13.04.2020
 ** TODO Контрольная работа
 * later

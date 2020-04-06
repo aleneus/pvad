@@ -238,22 +238,33 @@ pandas.
 
 ### Статистика
 
-scipy.stats
+Пакет **scipy.stats**. Часть пакета **scipy**, имеющего более широкое
+назначение.
 
-<!-- TODO: разделы -->
+Категории функций:
+
+* Continuous distributions
+* Discrete distributions
+* Summary statistics
+* Frequency statistics
+* Correlation functions
+* Statistical tests
+* Transformations
+* Statistical distances
+* Random variate generation
+* Circular statistical functions
+* Contingency table functions
+* и др.
 
 ### Машинное обучение
 
-sklearn.
+Пакет **scikit-learn**.
 
-<!-- TODO: разделы -->
 <!-- TODO: наборы данных -->
 
 ## Другие инструменты с API для Python
 
 tensorflow
-
-<!-- TODO: разделы -->
 
 <!-- TODO пристроить куда-нибудь: -->
 <!-- Перенесение кода на низкий уровень, реализация на другом языке -->
