@@ -238,8 +238,9 @@ pandas.
 
 ### Статистика
 
-Пакет **scipy.stats**. Часть пакета **scipy**, имеющего более широкое
-назначение.
+[**scipy.stats**](https://docs.scipy.org/doc/scipy/reference/stats.html)
+
+Часть пакета **scipy**, имеющего более широкое назначение.
 
 Категории функций:
 
@@ -258,13 +259,22 @@ pandas.
 
 ### Машинное обучение
 
-Пакет **scikit-learn**.
+[**scikit-learn**](https://scikit-learn.org/stable/index.html).
+
+Разделы:
+
+* Classification
+* Regression
+* Clustering
+* Dimensionality reduction
+* Model selection
+* Preprocessing
 
 <!-- TODO: наборы данных -->
 
 ## Другие инструменты с API для Python
 
-tensorflow
+[**tensorflow**](https://www.tensorflow.org/)
 
 <!-- TODO пристроить куда-нибудь: -->
 <!-- Перенесение кода на низкий уровень, реализация на другом языке -->
