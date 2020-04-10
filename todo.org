@@ -10,8 +10,8 @@
 ** DONE Python 3 as a tool: couple of words about scikit-learn and tensorflow
 * to 13.04.2020
 ** DONE Contr: draft
-** TODO Contr: prepare data for task one
-** TODO Contr: clean up
+** DONE Contr: prepare data for task one
+** DONE Contr: clean up
 * later
 ** TODO Virtual environments
 ** TODO Setup jupyter notebook
