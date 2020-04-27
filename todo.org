@@ -12,6 +12,8 @@
 ** DONE Contr: draft
 ** DONE Contr: prepare data for task one
 ** DONE Contr: clean up
+* to 29.04.2020
+** DONE feat: questions and answers for contr
 * later
 ** TODO Virtual environments
 ** TODO Setup jupyter notebook
