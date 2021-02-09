@@ -5,7 +5,7 @@ import numpy as np
 
 
 SETTINGS = {
-    'file': 'forest.png',
+    'file': 'river.png',
     'factor': 10,
 }
 
