@@ -17,6 +17,3 @@
 ** TODO Setup jupyter notebook
 ** TODO Sklearn datasets
 ** TODO Python and low-level code
-** TODO Подумать над структурой проекта
-- [ ] один и тот же css в каждой папке
-- [ ] странное имя p-01
