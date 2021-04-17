@@ -13,6 +13,7 @@
 * [Инструменты](tasks/tools/notes.md)
 * [Синтез тестовых данных](tasks/synth-distr/notes.md)
 * [Сбор и анализ данных](tasks/memproc/notes.md)
+* [Выравнивание спорадических данных](tasks/sporadic/notes.md)
 * [Контрольная работа](contr/)
 
 ## Ссылки
